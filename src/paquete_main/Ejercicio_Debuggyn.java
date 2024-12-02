@@ -29,10 +29,20 @@ public class Ejercicio_Debuggyn {
         // Error en el bucle de transposición: usamos mal los índices
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
-                transposedMatrix[i][j] = matrix[j][i]; // Error: El índice i y j están invertidos
+                transposedMatrix[j][i] = matrix[i][j]; // Error: El índice i y j están invertidos
             }
         }
-
+        
+        for(int j = 0; j < transposedMatrix.length; j++)//https://stackoverflow.com/questions/21920939/reverse-the-rows-of-a-2d-array
+        {
+            for(int i = 0; i < transposedMatrix[j].length / 2; i++)
+            {
+                int temp = transposedMatrix[j][i];
+                transposedMatrix[j][i] = transposedMatrix[j][transposedMatrix[j].length - i - 1];
+                transposedMatrix[j][transposedMatrix[j].length - i - 1] = temp;
+            }//CAMBIO
+        }
+   
         // Mostrar la matriz transpuesta
         System.out.println("\nMatriz transpuesta:");
         for (int i = 0; i < transposedMatrix.length; i++) {
@@ -44,7 +54,7 @@ public class Ejercicio_Debuggyn {
 
         // Paso 3: Intentar acceder a un índice fuera de los límites
         try {
-            System.out.println("\nAccediendo al elemento en [3][0]: " + matrix[3][0]);
+            System.out.println("\nAccediendo al elemento en [2][0]: " + matrix[2][0]);
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("\nError: " + e.toString());
         }
@@ -53,8 +63,8 @@ public class Ejercicio_Debuggyn {
         try {
             int sum = 0;
             // Intento de sumar los elementos de la matriz de forma incorrecta
-            for (int i = 0; i <= matrix.length; i++) {  // Error: índice fuera de límites
-                for (int j = 0; j <= matrix[i].length; j++) {  // Error: índice fuera de límites
+            for (int i = 0; i < matrix.length; i++) {  // Error: índice fuera de límites
+                for (int j = 0; j < matrix[i].length; j++) {  // Error: índice fuera de límites
                     sum += matrix[i][j];
                 }
             }
@@ -62,8 +72,8 @@ public class Ejercicio_Debuggyn {
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("\nError al intentar sumar: " + e.toString());
         }
-	}
+        }}
 		
-	}
+	
 
 
